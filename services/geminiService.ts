@@ -113,6 +113,7 @@ export const analyzeProductQualityRequirements = async (
     });
     rawResult = JSON.parse(response.text || '{}');
   } catch (error) {
+    console.warn("Retrying without Google Search due to error");
     const fallbackResponse = await ai.models.generateContent({
       model: 'gemini-3-pro-preview',
       contents: prompt,
